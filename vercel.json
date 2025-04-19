@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/frontend/browser/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/frontend/browser/$1"
+    },
+    {
+      "src": "/[^.]+",
+      "dest": "/dist/frontend/browser/index.html"
+    }
+  ],
+  "env": {
+    "API_URL": "@api_url"
+  }
+}

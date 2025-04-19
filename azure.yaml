@@ -1,0 +1,23 @@
+name: pole-plan
+services:
+  backend:
+    project: ./backend
+    language: java
+    host: appservice
+    docker:
+      path: ./backend/Dockerfile
+    hooks:
+      postdeploy:
+        shell: pwsh
+        run: ./scripts/postdeploy.ps1
+  frontend:
+    project: ./frontend
+    language: typescript
+    host: staticwebapp
+    dist: ./frontend/dist/frontend/browser
+    hooks:
+      predeploy:
+        shell: pwsh
+        run: |
+          npm install
+          npm run build
